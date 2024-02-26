@@ -11,8 +11,8 @@ namespace Artifactor
         protected override string Name => "Artifact of Voracity";
         protected override string Description => "Monsters can form greater numbers and spawn faster.";
 
-        protected override Sprite EnabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/DLC1/BearVoid/texBuffBearVoidReady.tif").WaitForCompletion();
-        protected override Sprite DisabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/DLC1/BearVoid/texBuffBearVoidCooldown.png").WaitForCompletion();
+        protected override Sprite EnabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/Base/ElementalRings/texBuffElementalRingsReadyIcon.tif").WaitForCompletion();
+        protected override Sprite DisabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/Base/ElementalRings/texBuffElementalRingsCooldownIcon.tif").WaitForCompletion();
 
         public Voracity() : base() {}
 
