@@ -40,6 +40,7 @@ namespace Artifactor
             orig(self);
             self.creditMultiplier *= 1.25f;
             // Could make creditMultiplier and softTeamCharacterLimits configurable (host-dependent)?
+            Log.Debug($"{nameof(Voracity)}> {nameof(CombatDirector)} credit multiplier raised. | {self.name}");
         }
 
         private static void Run_onRunStartGlobal(Run _)
