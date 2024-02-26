@@ -12,13 +12,10 @@ namespace Artifactor
         public const string Name = "Artifactor";
         public const string Version = "0.0.0";
 
-        public static new Config Config { get; private set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Unity Message")]
         private void Awake()
         {
             Log.Init(Logger);
-            Config = new Config(base.Config);
 
             // Use run start/end events to run check for if plugin should be active
             Run.onRunStartGlobal += SetPluginActiveState;
