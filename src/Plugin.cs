@@ -1,7 +1,7 @@
 using BepInEx;
 using RoR2;
 
-namespace ServerSider
+namespace Artifactor
 {
     [BepInPlugin(GUID, Name, Version)]
 
@@ -9,7 +9,7 @@ namespace ServerSider
     {
         public const string GUID = Author + "." + Name;
         public const string Author = "itsschwer";
-        public const string Name = "ServerSider";
+        public const string Name = "Artifactor";
         public const string Version = "0.0.0";
 
         public static new Config Config { get; private set; }

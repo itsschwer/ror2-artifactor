@@ -1,6 +1,6 @@
 ﻿using BepInEx.Configuration;
 
-namespace ServerSider
+namespace Artifactor
 {
     public sealed class Config
     {

@@ -1,6 +1,6 @@
 ﻿using BepInEx.Logging;
 
-namespace ServerSider
+namespace Artifactor
 {
     internal static class Log
     {
