@@ -1,5 +1,4 @@
-﻿using RoR2;
-using ServerSider;
+﻿using ServerSider;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -17,11 +16,10 @@ namespace Artifactor
         public Discontinuity() : base()
         {
             ServerSider.Plugin.UnmanageHook(RescueShipLoopPortal.ManageHook);
-            Run.onRunStartGlobal += ManageHook;
-            Run.onRunDestroyGlobal += ManageHook;
-            ManageHook();
+            RescueShipLoopPortal.Unhook();
         }
 
-        private void ManageHook(Run _ = null) => RescueShipLoopPortal.Rehook(IsEnabled && UnityEngine.Networking.NetworkServer.active);
+        protected override void OnEnabled() => RescueShipLoopPortal.Rehook(UnityEngine.Networking.NetworkServer.active);
+        protected override void OnDisabled() => RescueShipLoopPortal.Unhook();
     }
 }

@@ -19,6 +19,8 @@ namespace Artifactor
             instance = this as T;
             CreateArtifactDef();
             CreateLanguageTokens();
+            RunArtifactManager.onArtifactEnabledGlobal += OnArtifactEnabled;
+            RunArtifactManager.onArtifactDisabledGlobal += OnArtifactDisabled;
         }
     }
 
@@ -36,10 +38,6 @@ namespace Artifactor
         protected string DescriptionToken => CachedName + "_DESCRIPTION";
 
         public ArtifactDef artifactDef;
-        /// <remarks>
-        /// <see cref="RunArtifactManager"/> only exists alongside a <see cref="Run"/>.
-        /// </remarks>
-        public bool IsEnabled => RunArtifactManager.instance.IsArtifactEnabled(artifactDef);
 
         protected ArtifactDef CreateArtifactDef()
         {
@@ -61,5 +59,17 @@ namespace Artifactor
             R2API.LanguageAPI.Add(NameToken, Name);
             R2API.LanguageAPI.Add(DescriptionToken, Description);
         }
+
+        protected void OnArtifactEnabled(RunArtifactManager _, ArtifactDef artifactDef)
+        {
+            if (artifactDef == this.artifactDef) OnEnabled();
+        }
+        protected void OnArtifactDisabled(RunArtifactManager _, ArtifactDef artifactDef)
+        {
+            if (artifactDef == this.artifactDef) OnDisabled();
+        }
+
+        protected abstract void OnEnabled();
+        protected abstract void OnDisabled();
     }
 }
