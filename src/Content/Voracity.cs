@@ -9,7 +9,7 @@ namespace Artifactor
     {
         protected override string Token => "ITSSCHWER_VORACITY";
         protected override string Name => "Artifact of Voracity";
-        protected override string Description => "Monsters can form greater numbers and spawn faster.";
+        protected override string Description => "Monsters spawn faster and can form greater numbers.";
 
         protected override Sprite EnabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/Base/ElementalRings/texBuffElementalRingsReadyIcon.tif").WaitForCompletion();
         protected override Sprite DisabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/Base/EliteLunar/texBuffAffixLunar.tif").WaitForCompletion();
