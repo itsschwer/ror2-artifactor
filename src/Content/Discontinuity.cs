@@ -22,9 +22,6 @@ namespace Artifactor
             ManageHook();
         }
 
-        private static void ManageHook(Run _ = null) => RescueShipLoopPortal.Rehook(
-            UnityEngine.Networking.NetworkServer.active
-         && RunArtifactManager.instance.IsArtifactEnabled(instance.artifactDef)
-        );
+        private void ManageHook(Run _ = null) => RescueShipLoopPortal.Rehook(IsEnabled && UnityEngine.Networking.NetworkServer.active);
     }
 }

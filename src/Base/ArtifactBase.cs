@@ -36,6 +36,10 @@ namespace Artifactor
         protected string DescriptionToken => CachedName + "_DESCRIPTION";
 
         public ArtifactDef artifactDef;
+        /// <remarks>
+        /// <see cref="RunArtifactManager"/> only exists alongside a <see cref="Run"/>.
+        /// </remarks>
+        public bool IsEnabled => RunArtifactManager.instance.IsArtifactEnabled(artifactDef);
 
         protected ArtifactDef CreateArtifactDef()
         {
