@@ -1,8 +1,11 @@
 using BepInEx;
-using RoR2;
 
 namespace Artifactor
 {
+    [BepInDependency(ServerSider.Plugin.GUID)]
+    [BepInDependency(R2API.ContentManagement.R2APIContentManager.PluginGUID)]
+    [BepInDependency(R2API.LanguageAPI.PluginGUID)]
+    [R2API.Utils.NetworkCompatibility(R2API.Utils.CompatibilityLevel.EveryoneMustHaveMod, R2API.Utils.VersionStrictness.EveryoneNeedSameModVersion)]
     [BepInPlugin(GUID, Name, Version)]
 
     public sealed class Plugin : BaseUnityPlugin
@@ -16,44 +19,8 @@ namespace Artifactor
         private void Awake()
         {
             Log.Init(Logger);
-
-            // Use run start/end events to run check for if plugin should be active
-            Run.onRunStartGlobal += SetPluginActiveState;
-            Run.onRunDestroyGlobal += SetPluginActiveState;
-            SetPluginActiveState();
-
+            Content.Init();
             Log.Message("~awake.");
-        }
-
-        /// <summary>
-        /// Wrapper for <see cref="SetActive"/>, passing in <see cref="UnityEngine.Networking.NetworkServer.active"/>,
-        /// which appears to be used for determining if client is host.
-        /// </summary>
-        private void SetPluginActiveState(Run _ = null) => SetActive(UnityEngine.Networking.NetworkServer.active);
-
-        /// <summary>
-        /// All plugins are attached to the
-        /// <see href="https://github.com/BepInEx/BepInEx/blob/0d06996b52c0215a8327b8c69a747f425bbb0023/BepInEx/Bootstrap/Chainloader.cs#L88">same</see>
-        /// <see cref="UnityEngine.GameObject"/>, so manually manage components instead of calling <see cref="UnityEngine.GameObject.SetActive"/>.
-        /// </summary>
-        private void SetActive(bool value)
-        {
-            this.enabled = value;
-            Log.Message($"~{(value ? "active" : "inactive")}.");
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Unity Message")]
-        private void OnEnable()
-        {
-            // to be implemented
-            Log.Message("~enabled.");
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Unity Message")]
-        private void OnDisable()
-        {
-            // to be implemented
-            Log.Message("~disabled.");
         }
     }
 }

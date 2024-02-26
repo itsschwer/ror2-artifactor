@@ -16,6 +16,14 @@
         <PackageReference Include="MMHOOK.RoR2" Version="2022.9.20">
             <NoWarn>NU1701</NoWarn>
         </PackageReference>
+        <PackageReference Include="R2API.ContentManagement" Version="1.0.*" />
+        <PackageReference Include="R2API.Language" Version="1.0.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="ServerSider">
+        <HintPath>..\..\ror2-serversider\src\bin\Release\netstandard2.0\ServerSider.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
     <PropertyGroup>
@@ -31,7 +39,7 @@
         <ConvertToAbsolutePath Paths="$(ProductDir)">
             <Output TaskParameter="AbsolutePaths" PropertyName="AbsoluteProductDir" />
         </ConvertToAbsolutePath>
-        <Message Importance="High" Text="Package prepared -> '$(AbsoluteProductDir)'" />
+        <Message Importance="High" Text="Package prepared -&gt; '$(AbsoluteProductDir)'" />
 
         <ZipDirectory SourceDirectory="$(ProductDir)" DestinationFile="$(RootDir)$(MSBuildProjectName)--$(Configuration).zip" Overwrite="true" />
     </Target>
