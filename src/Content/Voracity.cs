@@ -44,7 +44,7 @@ namespace Artifactor
             // Could make creditMultiplier and softTeamCharacterLimits configurable (host-dependent)?
         }
 
-        private static void Run_onRunDestroyGlobal(Run _)
+        private static void Run_onRunStartGlobal(Run _)
         {
             TeamIndex[] targets = { TeamIndex.Monster, TeamIndex.Void, TeamIndex.Lunar };
             foreach (TeamIndex team in targets) {
@@ -54,7 +54,7 @@ namespace Artifactor
             Log.Debug($"{nameof(Voracity)}> Team character limits raised.");
         }
 
-        private static void Run_onRunStartGlobal(Run _)
+        private static void Run_onRunDestroyGlobal(Run _)
         {
             foreach (TeamIndex team in softTeamCharacterLimits.Keys) {
                 TeamCatalog.GetTeamDef(team).softCharacterLimit = softTeamCharacterLimits[team];
