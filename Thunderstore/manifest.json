@@ -2,8 +2,8 @@
 	"author": "itsschwer",
 	"name": "Artifactor",
 	"version_number": "0.0.0",
-	"website_url": "https://github.com/itsschwer/",
-	"description": "",
+	"website_url": "https://github.com/itsschwer/ror2-artifactor",
+	"description": "Adds new Artifacts — [ both server/client required ]",
 	"dependencies": [
 		"bbepis-BepInExPack-5.4.2113",
 		"RiskofThunder-HookGenPatcher-1.2.3",
