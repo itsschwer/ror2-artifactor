@@ -29,8 +29,6 @@ namespace Artifactor
 
         protected override void OnDisabled()
         {
-            if (!IsHost) return;
-
             On.RoR2.CombatDirector.Awake -= CombatDirector_Awake;
             Run.onRunStartGlobal -= Run_onRunStartGlobal;
             Run.onRunDestroyGlobal -= Run_onRunDestroyGlobal;
