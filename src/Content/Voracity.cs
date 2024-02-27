@@ -11,10 +11,31 @@ namespace Artifactor
         protected override string Name => "Artifact of Voracity";
         protected override string Description => "Monsters spawn faster and can form greater numbers.";
 
-        protected override Sprite EnabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/Base/ElementalRings/texBuffElementalRingsReadyIcon.tif").WaitForCompletion();
-        protected override Sprite DisabledIcon => Addressables.LoadAssetAsync<Sprite>("RoR2/Base/EliteLunar/texBuffAffixLunar.tif").WaitForCompletion();
+        protected override Sprite EnabledIcon => enabledIcon;
+        protected override Sprite DisabledIcon => disabledIcon;
 
-        public Voracity() : base() {}
+        protected readonly Sprite enabledIcon;
+        protected readonly Sprite disabledIcon;
+
+        public Voracity() : base() {
+            Sprite src = Addressables.LoadAssetAsync<Sprite>("RoR2/DLC1/BearVoid/texBuffBearVoidCooldown.png").WaitForCompletion();
+            
+            enabledIcon = CreateIcon(src, Color.white);
+            disabledIcon = CreateIcon(src, Color.gray);
+        }
+
+        private static Sprite CreateIcon(Sprite src, Color tint)
+        {
+            Texture2D tex = Object.Instantiate(src.texture);
+            Color[] cols = tex.GetPixels();
+            for (int i = 0; i < cols.Length; i++) {
+                cols[i].r *= tint.r;
+                cols[i].g *= tint.g;
+                cols[i].b *= tint.b;
+            }
+
+            return Sprite.Create(tex, src.rect, src.pivot, src.pixelsPerUnit);
+        }
 
         private bool IsHost => UnityEngine.Networking.NetworkServer.active;
 
