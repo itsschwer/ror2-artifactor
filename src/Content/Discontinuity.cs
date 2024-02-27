@@ -15,6 +15,7 @@ namespace Artifactor
 
         public Discontinuity() : base()
         {
+            Init();
             ServerSider.Plugin.UnmanageHook(RescueShipLoopPortal.ManageHook);
             RescueShipLoopPortal.Unhook();
         }

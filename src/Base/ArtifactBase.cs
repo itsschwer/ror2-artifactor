@@ -17,10 +17,6 @@ namespace Artifactor
             if (instance != null) throw new System.InvalidOperationException($"{nameof(ArtifactBase)} '{typeof(T).Name}' instance already exists.");
 
             instance = this as T;
-            CreateArtifactDef();
-            CreateLanguageTokens();
-            RunArtifactManager.onArtifactEnabledGlobal += OnArtifactEnabled;
-            RunArtifactManager.onArtifactDisabledGlobal += OnArtifactDisabled;
         }
     }
 
@@ -38,6 +34,14 @@ namespace Artifactor
         protected string DescriptionToken => CachedName + "_DESCRIPTION";
 
         public ArtifactDef artifactDef;
+
+        protected void Init()
+        {
+            CreateArtifactDef();
+            CreateLanguageTokens();
+            RunArtifactManager.onArtifactEnabledGlobal += OnArtifactEnabled;
+            RunArtifactManager.onArtifactDisabledGlobal += OnArtifactDisabled;
+        }
 
         protected ArtifactDef CreateArtifactDef()
         {
