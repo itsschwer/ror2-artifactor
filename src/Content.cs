@@ -12,7 +12,7 @@ namespace Artifactor
             Discontinuity = new Discontinuity().artifactDef;
             Voracity = new Voracity().artifactDef;
 
-            Log.Message("~content initialized");
+            Plugin.Logger.LogMessage("~content initialized");
         }
     }
 }

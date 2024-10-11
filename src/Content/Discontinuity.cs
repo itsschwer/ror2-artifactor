@@ -16,11 +16,16 @@ namespace Artifactor
         public Discontinuity() : base()
         {
             Init();
-            ServerSider.Plugin.UnmanageHook(RescueShipLoopPortal.ManageHook);
-            RescueShipLoopPortal.Unhook();
+            ServerSider.Plugin.Tweaks.managedTweaks.Remove(ServerSider.Plugin.Tweaks.RescueShipLoopPortal);
+            ServerSider.Plugin.Tweaks.RescueShipLoopPortal.Disable();
         }
 
-        protected override void OnEnabled() => RescueShipLoopPortal.Rehook(UnityEngine.Networking.NetworkServer.active);
-        protected override void OnDisabled() => RescueShipLoopPortal.Unhook();
+        protected override void OnEnabled()
+        {
+            if (UnityEngine.Networking.NetworkServer.active) {
+                ServerSider.Plugin.Tweaks.RescueShipLoopPortal.Enable();
+            }
+        }
+        protected override void OnDisabled() => ServerSider.Plugin.Tweaks.RescueShipLoopPortal.Disable();
     }
 }

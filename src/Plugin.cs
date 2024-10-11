@@ -7,7 +7,6 @@ namespace Artifactor
     [BepInDependency(R2API.LanguageAPI.PluginGUID)]
     [R2API.Utils.NetworkCompatibility(R2API.Utils.CompatibilityLevel.EveryoneMustHaveMod, R2API.Utils.VersionStrictness.EveryoneNeedSameModVersion)]
     [BepInPlugin(GUID, Name, Version)]
-
     public sealed class Plugin : BaseUnityPlugin
     {
         public const string GUID = Author + "." + Name;
@@ -15,12 +14,17 @@ namespace Artifactor
         public const string Name = "Artifactor";
         public const string Version = "0.0.0";
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "Unity Message")]
+        internal static new BepInEx.Logging.ManualLogSource Logger { get; private set; }
+
         private void Awake()
         {
-            Log.Init(Logger);
+            // Use Plugin.GUID instead of Plugin.Name as source name
+            BepInEx.Logging.Logger.Sources.Remove(base.Logger);
+            Logger = BepInEx.Logging.Logger.CreateLogSource(Plugin.GUID);
+
             Content.Init();
-            Log.Message("~awake.");
+
+            Logger.LogMessage("~awake.");
         }
     }
 }

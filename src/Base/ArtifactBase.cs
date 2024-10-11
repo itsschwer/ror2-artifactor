@@ -1,4 +1,5 @@
 ﻿using RoR2;
+using UnityEngine;
 
 namespace Artifactor
 {
@@ -75,5 +76,37 @@ namespace Artifactor
 
         protected abstract void OnEnabled();
         protected abstract void OnDisabled();
+
+
+
+
+        internal static readonly Color EnabledColor = new Color(231 / 255f, 199 / 255f, 231 / 255f);
+        internal static readonly Color DisabledColor = new Color(71 / 255f, 62 / 255f, 69 / 255f);
+
+        internal static Sprite CreateIcon(Sprite src, Color tint)
+        {
+            Texture2D tex = DuplicateTexture(src.texture);
+            Color[] cols = tex.GetPixels();
+            for (int i = 0; i < cols.Length; i++) {
+                cols[i].r *= tint.r;
+                cols[i].g *= tint.g;
+                cols[i].b *= tint.b;
+            }
+            tex.SetPixels(cols);
+            tex.Apply(true, true);
+            return Sprite.Create(tex, src.rect, src.pivot, src.pixelsPerUnit);
+        }
+
+        // Reference: https://stackoverflow.com/questions/44733841/how-to-make-texture2d-readable-via-script/44734346#44734346
+        internal static Texture2D DuplicateTexture(Texture2D src)
+        {
+            RenderTexture rt = RenderTexture.GetTemporary(src.width, src.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Linear);
+            Graphics.Blit(src, rt);
+            RenderTexture.active = rt;
+            Texture2D tex = new Texture2D(src.width, src.height);
+            tex.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+            tex.Apply();
+            return tex;
+        }
     }
 }
