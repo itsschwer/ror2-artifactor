@@ -1,4 +1,4 @@
-﻿using ServerSider;
+﻿#if DISCONINUITY
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -29,3 +29,4 @@ namespace Artifactor
         protected override void OnDisabled() => ServerSider.Plugin.Tweaks.RescueShipLoopPortal.Disable();
     }
 }
+#endif

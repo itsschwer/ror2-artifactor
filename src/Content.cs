@@ -4,13 +4,15 @@ namespace Artifactor
 {
     public static class Content
     {
-        public static ArtifactDef Discontinuity;
-        public static ArtifactDef Voracity;
+#if DISCONINUITY
+        public static ArtifactDef Discontinuity { get; private set; }
+#endif
 
         internal static void Init()
         {
+#if DISCONINUITY
             Discontinuity = new Discontinuity().artifactDef;
-            Voracity = new Voracity().artifactDef;
+#endif
 
             Plugin.Logger.LogMessage("~content initialized");
         }

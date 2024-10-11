@@ -27,8 +27,8 @@ namespace Artifactor
         protected abstract string Name { get; }
         protected abstract string Description { get; }
 
-        protected abstract UnityEngine.Sprite EnabledIcon { get; }
-        protected abstract UnityEngine.Sprite DisabledIcon { get; }
+        protected abstract Sprite EnabledIcon { get; }
+        protected abstract Sprite DisabledIcon { get; }
 
         protected string CachedName => "ARTIFACT_" + Token;
         protected string NameToken => CachedName + "_NAME";
