@@ -5,10 +5,10 @@
 	"website_url": "https://github.com/itsschwer/ror2-artifactor",
 	"description": "Adds new Artifacts — [ both server/client required ]",
 	"dependencies": [
-		"bbepis-BepInExPack-5.4.2113",
-		"RiskofThunder-HookGenPatcher-1.2.3",
-		"itsschwer-ServerSider-0.0.0",
-		"RiskofThunder-R2API_ContentManagement-1.0.4",
-		"RiskofThunder-R2API_Language-1.0.1"
+		"bbepis-BepInExPack-5.4.2117",
+		"RiskofThunder-HookGenPatcher-1.2.5",
+		"itsschwer-ServerSider-1.3.0",
+		"RiskofThunder-R2API_ContentManagement-1.0.6",
+		"RiskofThunder-R2API_Language-1.0.6"
 	]
 }
